@@ -53,7 +53,7 @@ class Adafruit_Soundboard : public Print {
 
   uint8_t volUp(void);
   uint8_t volDown(void);
-  uint8_t setVol(uint8_t vol);
+  uint8_t setVol(uint8_t vol);  // setVol() is very slow.
 
   boolean playTrack(uint8_t n);
   boolean playTrack(const char *name);

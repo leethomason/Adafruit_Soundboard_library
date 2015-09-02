@@ -91,7 +91,6 @@ boolean Adafruit_Soundboard::reset(void) {
 
 // Query the board for the # of files and names/sizes
 uint8_t Adafruit_Soundboard::listFiles(FileInfo* infoArr, int nInfoArr, fileListHandler handler) {
-  uint32_t filesize;
 
   while (stream->available())
     stream->read();
@@ -102,7 +101,6 @@ uint8_t Adafruit_Soundboard::listFiles(FileInfo* infoArr, int nInfoArr, fileList
   FileInfo info;
   
   while (stream->readBytesUntil('\n', line_buffer, LINE_BUFFER_SIZE)) {
-    const char* filename = line_buffer;
     line_buffer[11] = 0;
 
     uint32_t size = 0;
@@ -219,6 +217,7 @@ uint8_t Adafruit_Soundboard::setVol(uint8_t vol)
     else
       current = volUp();
   }
+  return current;
 }
 
 
