@@ -209,13 +209,24 @@ uint8_t Adafruit_Soundboard::volDown() {
 
 uint8_t Adafruit_Soundboard::setVol(uint8_t vol)
 {
+  // This is a little tricky; there are some
+  // values that don't seem possible, so
+  // it's possible to get into infinite loops.
+  // Code carefully.
   vol = constrain(vol, 0, 204);
-  uint8_t current = 205;
-  while(current != vol) {
-    if (vol < current) 
-      current = volDown();
-    else
+  uint8_t current = volDown();
+
+  if(current < vol) {
+    int n = vol - current;
+    for(int i=0; i<n && current < vol; ++i) {
       current = volUp();
+    }
+  }
+  else {
+    int n = current - vol;
+    for(int i=0; i<n && current > vol; ++i) {
+      current = volDown();
+    }
   }
   return current;
 }
