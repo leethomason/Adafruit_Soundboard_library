@@ -21,7 +21,7 @@
 
 #include "Adafruit_Soundboard.h"
 
-//#define DEBUG 1
+#define DEBUG 1
 
 // Constructor
 Adafruit_Soundboard::Adafruit_Soundboard(Stream *s, Stream *d, int8_t r) 

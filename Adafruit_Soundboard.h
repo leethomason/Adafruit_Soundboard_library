@@ -51,6 +51,7 @@ class Adafruit_Soundboard : public Print {
    */
   uint8_t listFiles(FileInfo* infoArr, int nInfoArr, fileListHandler handler);
 
+  // Warning! Only works if sound is off.
   uint8_t volUp(void);
   uint8_t volDown(void);
   uint8_t setVol(uint8_t vol);  // setVol() is very slow.
